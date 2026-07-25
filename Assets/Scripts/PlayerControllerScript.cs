@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerControllerScript : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class PlayerControllerScript : MonoBehaviour
     private float m_maxSpeed;
     [SerializeField]
     private float m_stoppingPower;
+    [SerializeField]
+    private float m_slowTimeDuration;
 
     [SerializeField]
     private float m_jumpMultiplier;
@@ -28,6 +32,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     private float m_playerHalfHeight;
     private float m_forwardInput;
+
+    public bool isSlowingTime = false;
 
     private void Awake()
     {
@@ -54,7 +60,23 @@ public class PlayerControllerScript : MonoBehaviour
     void OnSlow(InputValue value)
     {
         GameEvents.Instance.SlowTime();
-        //Time.timeScale = m_slowMultiplier;
+        isSlowingTime = true;
+        Debug.Log("Slowing");
+        StartCoroutine(SlowRoutine());
+    }
+
+    private IEnumerator SlowRoutine()
+    {
+        float regularSpeedMultiplier = m_speedMultiplier;
+        float regularJumpMultiplier = m_jumpMultiplier;
+        m_speedMultiplier *= 12;
+        m_jumpMultiplier *= 3;
+        Time.timeScale = m_slowMultiplier;
+        yield return new WaitForSecondsRealtime(m_slowTimeDuration);
+        Time.timeScale = 1f;
+        m_speedMultiplier = regularSpeedMultiplier;
+        m_jumpMultiplier = regularJumpMultiplier;
+        isSlowingTime = false;
     }
 
     void OnMove(InputValue value)
@@ -94,12 +116,12 @@ public class PlayerControllerScript : MonoBehaviour
         {
             if (m_forwardInput != 0)
             {
-                m_rigidbody.AddForce(new Vector2(m_forwardInput * m_speedMultiplier * 100f * Time.deltaTime, 0f));
-                m_rigidbody.linearVelocityX += m_forwardInput * m_speedMultiplier * 10f * Time.deltaTime;
+                m_rigidbody.AddForce(new Vector2(m_forwardInput * m_speedMultiplier * 100f * Time.unscaledDeltaTime, 0f));
+                m_rigidbody.linearVelocityX += m_forwardInput * m_speedMultiplier * 10f * Time.unscaledDeltaTime;
             }
             else if (!m_isJumping && !m_isDoubleJumping)
             {
-                m_rigidbody.linearVelocityX = Mathf.Lerp(m_rigidbody.linearVelocity.x, 0f, m_stoppingPower * Time.deltaTime);
+                m_rigidbody.linearVelocityX = Mathf.Lerp(m_rigidbody.linearVelocity.x, 0f, m_stoppingPower * Time.unscaledDeltaTime);
             }
             float clampedX = Mathf.Clamp(m_rigidbody.linearVelocity.x, -m_maxSpeed, m_maxSpeed);
             m_rigidbody.linearVelocity = new Vector2(clampedX, m_rigidbody.linearVelocity.y);
@@ -121,7 +143,7 @@ public class PlayerControllerScript : MonoBehaviour
     /// </summary>
     public void Perish()
     {
-        //onPlayerPerish?.Invoke(this);
+        Time.timeScale = 1.0f;
         GameEvents.Instance.PlayerPerish(this);
         Destroy(gameObject);
     }

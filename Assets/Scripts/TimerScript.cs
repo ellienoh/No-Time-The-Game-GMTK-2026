@@ -9,6 +9,8 @@ public class TimerScript : MonoBehaviour
     private float m_startingTime;
     [SerializeField]
     private Color m_rewindFontColor;
+    [SerializeField]
+    private Color m_slowFontColor;
     private Color m_regularFontColor;
     private float m_remainingTime;
     private bool m_running;
@@ -48,6 +50,10 @@ public class TimerScript : MonoBehaviour
                 m_timerText.color = m_rewindFontColor;
                 m_remainingTime += Time.deltaTime;
             }
+            else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerScript>().isSlowingTime)
+            {
+                m_timerText.color = m_slowFontColor;
+            }
             else
             {
                 m_timerText.color = m_regularFontColor;
@@ -67,7 +73,11 @@ public class TimerScript : MonoBehaviour
 
     private void TimeOnPerish(PlayerControllerScript player)
     {
-        m_timerText.text = "0.0";
+        m_timerText.color = m_regularFontColor;
+        if (m_remainingTime < 0)
+        {
+            m_timerText.text = "0.0";
+        }
         m_running = false;
     }
 
@@ -81,5 +91,6 @@ public class TimerScript : MonoBehaviour
     {
         m_running = false;
     }
+
 
 }

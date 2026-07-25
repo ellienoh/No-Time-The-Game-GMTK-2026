@@ -27,7 +27,6 @@ public class SlowObjectScript : MonoBehaviour
 
     private void SlowTime()
     {
-
     }
 
 

@@ -9,6 +9,16 @@ public class FastObsControllerScript : MonoBehaviour
     private Vector3 startPosition;
     private float m_currentMoveSpeed;
 
+    private void OnEnable()
+    {
+        GameEvents.Instance.OnSlowTime += OnSlowTime;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.Instance.OnSlowTime -= OnSlowTime;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +44,11 @@ public class FastObsControllerScript : MonoBehaviour
             //Debug.Log("Player hit!");
             collision.gameObject.GetComponent<PlayerControllerScript>().Perish();
         }
+    }
+
+    private void OnSlowTime()
+    {
+
     }
 
 

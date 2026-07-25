@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class GameManager : MonoBehaviour
     private Vector3 playerInitialPosition;
     public GameObject playerPrefab;
     public GameObject levelClearCanvas;
+    public List<GameObject> fakeFloors;
 
     private void OnEnable()
     {
@@ -51,6 +54,10 @@ public class GameManager : MonoBehaviour
         if (playerPrefab != null)
         {
             Instantiate(playerPrefab, playerInitialPosition, Quaternion.identity);
+        }
+        for (int i = 0; i < fakeFloors.Count; i++)
+        {
+            fakeFloors[i].SetActive(true);
         }
         GameEvents.Instance.PlayerRespawn();
     }
