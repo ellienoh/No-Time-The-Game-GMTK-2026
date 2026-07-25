@@ -203,11 +203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   m_maxSpeed: 10
   m_stoppingPower: 6
-  m_slowTimeDuration: 3
+  m_slowTimeDuration: 2
   m_jumpMultiplier: 8.5
   m_doubleJumpMultiplier: 9
   m_speedMultiplier: 7
-  m_slowMultiplier: 0.3
+  m_slowMultiplier: 0.1
   m_isJumping: 0
   m_isDoubleJumping: 0
   isSlowingTime: 0

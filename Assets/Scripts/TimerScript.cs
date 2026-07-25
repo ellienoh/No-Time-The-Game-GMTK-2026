@@ -90,6 +90,7 @@ public class TimerScript : MonoBehaviour
     private void OnLevelClear(PlayerControllerScript player)
     {
         m_running = false;
+        Debug.Log((m_startingTime - m_remainingTime) % 1);
     }
 
 

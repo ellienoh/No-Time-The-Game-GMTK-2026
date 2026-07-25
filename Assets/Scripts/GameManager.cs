@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private Vector3 playerInitialPosition;
     public GameObject playerPrefab;
     public GameObject levelClearCanvas;
-    public List<GameObject> fakeFloors;
+    public List<GameObject> fakeFloors = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -55,9 +55,15 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(playerPrefab, playerInitialPosition, Quaternion.identity);
         }
-        for (int i = 0; i < fakeFloors.Count; i++)
+        if (fakeFloors != null)
         {
-            fakeFloors[i].SetActive(true);
+            for (int i = 0; i < fakeFloors.Count; i++)
+            {
+                if (fakeFloors[i] != null)
+                {
+                    fakeFloors[i].SetActive(true);
+                }
+            }
         }
         GameEvents.Instance.PlayerRespawn();
     }

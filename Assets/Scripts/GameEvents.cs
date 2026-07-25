@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameEvents
 {
+    public List<float> bestTimes = new List<float>();
+
     private static GameEvents m_instance;
     public static GameEvents Instance
     {

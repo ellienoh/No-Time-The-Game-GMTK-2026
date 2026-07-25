@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89643ad4a4d904045a5923744b0759f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  respawnTime: 2
+  respawnTime: 1
   playerPrefab: {fileID: 6973479026964036801, guid: 1b3843394aab52845aa63e3ad150d0b7, type: 3}
-  levelClearCanvas: {fileID: 1469007089843692655, guid: 6d816bcd15a9d5d409f5d1eace75a71b, type: 3}
+  levelClearCanvas: {fileID: 0}
+  fakeFloors: []
