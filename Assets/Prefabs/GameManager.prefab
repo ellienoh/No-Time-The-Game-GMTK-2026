@@ -48,3 +48,4 @@ MonoBehaviour:
   playerPrefab: {fileID: 6973479026964036801, guid: 1b3843394aab52845aa63e3ad150d0b7, type: 3}
   levelClearCanvas: {fileID: 0}
   fakeFloors: []
+  clockTicking: {fileID: 0}

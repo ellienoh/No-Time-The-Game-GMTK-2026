@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &132705020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4595524116492781319, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+  m_PrefabInstance: {fileID: 344620935733220230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293775632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,6 +947,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1926321849386361047, guid: b094ea80d14c1d94ebbd17a9c3e5e20a, type: 3}
   m_PrefabInstance: {fileID: 1914876114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &344620935733220230
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2959862964011717301, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959862964011717301, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 970.43964
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 683.5483
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499766603712873225, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595524116492781319, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
+      propertyPath: m_Name
+      value: ClockTicking
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19b7289567be0ba4fbfba108a5ed2bba, type: 3}
 --- !u!1001 &4581508313921074689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,11 +1169,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Level_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8914508609068342836, guid: 6d816bcd15a9d5d409f5d1eace75a71b, type: 3}
+      propertyPath: m_text
+      value: 'Best Time : idk'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d816bcd15a9d5d409f5d1eace75a71b, type: 3}
+--- !u!1 &4807479603282692240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6648845921814725762, guid: 6d816bcd15a9d5d409f5d1eace75a71b, type: 3}
+  m_PrefabInstance: {fileID: 4807479603282692239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5480057292005805804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1196,6 +1275,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3458995874089249700, guid: 2ab5be1b456d8104081f70d059f11d02, type: 3}
+      propertyPath: bestTimeText
+      value: 
+      objectReference: {fileID: 4807479603282692240}
+    - target: {fileID: 3458995874089249700, guid: 2ab5be1b456d8104081f70d059f11d02, type: 3}
+      propertyPath: m_startingTime
+      value: 21.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7493233607795009511, guid: 2ab5be1b456d8104081f70d059f11d02, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1257,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2634825130217266029, guid: d9ba31063b78a1d48b5c76dcd449e0e8, type: 3}
+      propertyPath: clockTicking
+      value: 
+      objectReference: {fileID: 132705020}
     - target: {fileID: 2634825130217266029, guid: d9ba31063b78a1d48b5c76dcd449e0e8, type: 3}
       propertyPath: levelClearCanvas
       value: 
@@ -1352,3 +1443,4 @@ SceneRoots:
   - {fileID: 5698235839905046822}
   - {fileID: 4807479603282692239}
   - {fileID: 1294349591}
+  - {fileID: 344620935733220230}

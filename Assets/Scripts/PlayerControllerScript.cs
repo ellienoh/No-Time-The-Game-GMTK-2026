@@ -34,6 +34,7 @@ public class PlayerControllerScript : MonoBehaviour
     private float m_forwardInput;
 
     public bool isSlowingTime = false;
+    public bool hasMoved = false;
 
     private void Awake()
     {
@@ -91,12 +92,22 @@ public class PlayerControllerScript : MonoBehaviour
         //if (m_isGrounded && !m_rewindObjectScript.isRewinding)
         if (GetIsGrounded() && !m_rewindObjectScript.isRewinding)
         {
+            if (!hasMoved)
+            {
+                GameEvents.Instance.FirstMove();
+                hasMoved = true;
+            }
             m_isJumping = true;
             m_rigidbody.AddForce(Vector2.up * m_jumpMultiplier * 100f);
             //Debug.Log(m_isJumping);
         }
         else if (m_isDoubleJumping && !m_rewindObjectScript.isRewinding)
         {
+            if (!hasMoved)
+            {
+                GameEvents.Instance.FirstMove();
+                hasMoved = true;
+            }
             m_isDoubleJumping = false;
             m_rigidbody.linearVelocity = Vector2.zero;
             m_rigidbody.AddForce(Vector2.up * m_doubleJumpMultiplier * 100f);
@@ -116,6 +127,11 @@ public class PlayerControllerScript : MonoBehaviour
         {
             if (m_forwardInput != 0)
             {
+                if (!hasMoved)
+                {
+                    GameEvents.Instance.FirstMove();
+                    hasMoved = true;
+                }
                 m_rigidbody.AddForce(new Vector2(m_forwardInput * m_speedMultiplier * 100f * Time.unscaledDeltaTime, 0f));
                 m_rigidbody.linearVelocityX += m_forwardInput * m_speedMultiplier * 10f * Time.unscaledDeltaTime;
             }

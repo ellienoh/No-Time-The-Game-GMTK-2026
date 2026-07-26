@@ -36,7 +36,7 @@ public class RewindObjectScript : MonoBehaviour
     }
 
     private void OnRewind() {
-        Debug.Log("Rewinding!");
+        //Debug.Log("Rewinding!");
         isRewinding = true;
     }
 
@@ -58,7 +58,7 @@ public class RewindObjectScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Rewind Done!");
+            //Debug.Log("Rewind Done!");
             m_rigidbody.simulated = true;
             isRewinding = false;
         }

@@ -24,6 +24,7 @@ public class GameEvents
     public event Action<float> OnRewindTime;
     public event Action<PlayerControllerScript> OnLevelClear;
     public event Action OnSlowTime;
+    public event Action OnFirstMove;
 
     public void PlayerPerish(PlayerControllerScript player)
     {
@@ -48,6 +49,11 @@ public class GameEvents
     public void SlowTime()
     {
         OnSlowTime?.Invoke();
+    }
+
+    public void FirstMove()
+    {
+        OnFirstMove?.Invoke();
     }
 
 }
