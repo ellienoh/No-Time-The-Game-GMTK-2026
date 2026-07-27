@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286a6549f343af54ba92dc81f7c78fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RewindManagerScript
-  m_rewindTime: 10
+  m_rewindTime: 3
   isRewinding: 0
 --- !u!58 &6529385798662936768
 CircleCollider2D:

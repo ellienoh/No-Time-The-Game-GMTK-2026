@@ -347,13 +347,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 272894471333583676, guid: 1b3843394aab52845aa63e3ad150d0b7, type: 3}
-      propertyPath: m_doubleJumpMultiplier
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 3175936965532337056, guid: 1b3843394aab52845aa63e3ad150d0b7, type: 3}
       propertyPath: m_rewindTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6973479026964036801, guid: 1b3843394aab52845aa63e3ad150d0b7, type: 3}
       propertyPath: m_Name

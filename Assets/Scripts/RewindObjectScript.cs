@@ -37,6 +37,10 @@ public class RewindObjectScript : MonoBehaviour
 
     private void OnRewind() {
         //Debug.Log("Rewinding!");
+        //if (!GetComponent<PlayerControllerScript>().isSlowingTime)
+        //{
+        //    isRewinding = true;
+        //}
         isRewinding = true;
     }
 

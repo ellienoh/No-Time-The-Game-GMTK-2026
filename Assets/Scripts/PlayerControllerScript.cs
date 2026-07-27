@@ -36,6 +36,16 @@ public class PlayerControllerScript : MonoBehaviour
     public bool isSlowingTime = false;
     public bool hasMoved = false;
 
+    private void OnEnable()
+    {
+        GameEvents.Instance.OnSlowTime += OnSlowTimeEnd;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.Instance.OnSlowTime -= OnSlowTimeEnd;
+    }
+
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -58,27 +68,40 @@ public class PlayerControllerScript : MonoBehaviour
         
     }
 
-    void OnSlow(InputValue value)
+    private void OnSlowTimeEnd()
     {
-        GameEvents.Instance.SlowTime();
-        isSlowingTime = true;
-        Debug.Log("Slowing");
-        StartCoroutine(SlowRoutine());
+        isSlowingTime = false;
+        Debug.Log("Slow time ended");
+        //Time.timeScale = 1f;
+        //m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x * m_speedMultiplier, m_rigidbody.velocity.y);
     }
 
-    private IEnumerator SlowRoutine()
+    void OnSlow(InputValue value)
     {
-        float regularSpeedMultiplier = m_speedMultiplier;
-        float regularJumpMultiplier = m_jumpMultiplier;
-        m_speedMultiplier *= 12;
-        m_jumpMultiplier *= 3;
-        Time.timeScale = m_slowMultiplier;
-        yield return new WaitForSecondsRealtime(m_slowTimeDuration);
-        Time.timeScale = 1f;
-        m_speedMultiplier = regularSpeedMultiplier;
-        m_jumpMultiplier = regularJumpMultiplier;
-        isSlowingTime = false;
+        //if (!GetComponent<RewindObjectScript>().isRewinding)
+        //{
+        //    GameEvents.Instance.SlowTime();
+        //    isSlowingTime = true;
+        //}
+        GameEvents.Instance.SlowTime();
+        isSlowingTime = true;
+        //Debug.Log("Slowing");
+        //StartCoroutine(SlowRoutine());
     }
+
+    //private IEnumerator SlowRoutine()
+    //{
+    //    //float regularSpeedMultiplier = m_speedMultiplier;
+    //    //float regularJumpMultiplier = m_jumpMultiplier;
+    //    //m_speedMultiplier *= 12;
+    //    //m_jumpMultiplier *= 3;
+    //    //Time.timeScale = m_slowMultiplier;
+    //    //yield return new WaitForSecondsRealtime(m_slowTimeDuration);
+    //    //Time.timeScale = 1f;
+    //    //m_speedMultiplier = regularSpeedMultiplier;
+    //    //m_jumpMultiplier = regularJumpMultiplier;
+    //    isSlowingTime = false;
+    //}
 
     void OnMove(InputValue value)
     {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FastObsControllerScript : MonoBehaviour
@@ -8,6 +9,9 @@ public class FastObsControllerScript : MonoBehaviour
     private float timer = 0;
     private Vector3 startPosition;
     private float m_currentMoveSpeed;
+    [SerializeField]
+    private float m_slowTimeDuration;
+    private bool m_isSlowingTime = false;
 
     private void OnEnable()
     {
@@ -32,7 +36,16 @@ public class FastObsControllerScript : MonoBehaviour
         timer += Time.deltaTime;
 
         float halfDuration = timerDuration / 2f;
-        float offset = Mathf.PingPong(timer, halfDuration) * m_currentMoveSpeed;
+        float offset;
+        if (m_isSlowingTime)
+        {
+            offset = Mathf.PingPong(timer, halfDuration * 10) * m_currentMoveSpeed;
+        }
+        else
+        {
+            offset = Mathf.PingPong(timer, halfDuration) * m_currentMoveSpeed;
+        }
+        
 
         transform.position = startPosition + Vector3.down * offset;
     }
@@ -48,7 +61,17 @@ public class FastObsControllerScript : MonoBehaviour
 
     private void OnSlowTime()
     {
+        m_currentMoveSpeed = moveSpeed * 0.05f;
+        m_isSlowingTime = true;
+        StartCoroutine(SlowRoutine());
+    }
 
+    private IEnumerator SlowRoutine()
+    {
+        yield return new WaitForSecondsRealtime(m_slowTimeDuration);
+        m_currentMoveSpeed = moveSpeed;
+        m_isSlowingTime = false;
+        GameEvents.Instance.SlowTimeEnd();
     }
 
 

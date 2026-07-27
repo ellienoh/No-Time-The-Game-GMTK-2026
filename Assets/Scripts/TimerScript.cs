@@ -16,6 +16,7 @@ public class TimerScript : MonoBehaviour
     private bool m_running;
     private Vector3 m_regularPosition;
     public GameObject bestTimeText;
+    private bool m_isSlowing = false;
 
     private void OnEnable()
     {
@@ -23,6 +24,8 @@ public class TimerScript : MonoBehaviour
         GameEvents.Instance.OnPlayerRespawn += TimeOnRespawn;
         GameEvents.Instance.OnLevelClear += OnLevelClear;
         GameEvents.Instance.OnFirstMove += StartTimer;
+        GameEvents.Instance.OnSlowTime += OnSlowTime;
+        GameEvents.Instance.OnSlowTimeEnd += OnSlowTimeEnd;
     }
 
     private void OnDisable()
@@ -31,6 +34,8 @@ public class TimerScript : MonoBehaviour
         GameEvents.Instance.OnPlayerRespawn -= TimeOnRespawn;
         GameEvents.Instance.OnLevelClear -= OnLevelClear;
         GameEvents.Instance.OnFirstMove -= StartTimer;
+        GameEvents.Instance.OnSlowTime -= OnSlowTime;
+        GameEvents.Instance.OnSlowTimeEnd -= OnSlowTimeEnd;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,14 +59,17 @@ public class TimerScript : MonoBehaviour
                 m_timerText.color = m_rewindFontColor;
                 m_remainingTime += Time.deltaTime;
             }
-            else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerScript>().isSlowingTime)
+            //else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerScript>().isSlowingTime)
+            else if (m_isSlowing)
             {
                 m_timerText.color = m_slowFontColor;
+                Debug.Log("slowing...");
             }
             else
             {
                 m_timerText.color = m_regularFontColor;
                 m_remainingTime -= Time.deltaTime;
+                Debug.Log("regular time");
             }
             if (m_remainingTime > 0)
             {
@@ -94,16 +102,17 @@ public class TimerScript : MonoBehaviour
     private void TimeOnRespawn()
     {
         m_remainingTime = m_startingTime;
+        m_timerText.text = m_remainingTime.ToString("F1");
     }
 
     private void OnLevelClear(PlayerControllerScript player)
     {
         GameEvents.Instance.bestTimes.Add(m_startingTime - m_remainingTime);
         m_running = false;
-        string timeString = (m_startingTime - m_remainingTime).ToString("F2");
+        string timeString = (m_startingTime - m_remainingTime).ToString("F3");
         bestTimeText.GetComponent<TextMeshProUGUI>().text = "Best Time: " + timeString + " seconds";
         //GameObject.FindGameObjectWithTag("LevelTime").GetComponent<TextMeshProUGUI>().text = "Time: " + timeString + " seconds";
-        Debug.Log("finding");
+        //Debug.Log("finding");
 
         for (int i = 0; i < GameEvents.Instance.bestTimes.Count; i++)
         {
@@ -112,6 +121,16 @@ public class TimerScript : MonoBehaviour
 
         //Debug.Log((m_startingTime - m_remainingTime) % 1);
 
+    }
+
+    private void OnSlowTime()
+    {
+        m_isSlowing = true;
+    }
+
+    private void OnSlowTimeEnd()
+    {
+        m_isSlowing = false;
     }
 
 
